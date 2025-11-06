@@ -1,6 +1,10 @@
 import spacy
 from nltk.corpus import stopwords
 import re
+import nltk
+# --- Ensure NLTK data downloads in cloud environments ---
+nltk.download('stopwords')
+nltk.download('punkt')
 
 # ---------------- NLP MODEL SETUP ----------------
 # Load spaCy NLP model
