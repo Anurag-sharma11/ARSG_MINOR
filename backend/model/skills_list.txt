@@ -1,0 +1,191 @@
+# ---------------------- PROGRAMMING LANGUAGES ----------------------
+python
+java
+c
+c++
+c#
+r
+php
+swift
+typescript
+kotlin
+go
+ruby
+
+# ---------------------- WEB DEVELOPMENT ----------------------
+html
+css
+javascript
+typescript
+bootstrap
+jquery
+react
+reactjs
+next.js
+node.js
+express.js
+flask
+django
+angular
+vue.js
+wordpress
+php
+rest api
+json
+ajax
+
+# ---------------------- DATABASE TECHNOLOGIES ----------------------
+sql
+mysql
+postgresql
+mongodb
+firebase
+oracle
+sqlite
+nosql
+plsql
+database management
+data modeling
+
+# ---------------------- DATA SCIENCE / ML / AI ----------------------
+machine learning
+deep learning
+nlp
+data analysis
+data visualization
+data preprocessing
+data cleaning
+feature engineering
+model deployment
+supervised learning
+unsupervised learning
+time series analysis
+tensorflow
+keras
+pytorch
+scikit-learn
+numpy
+pandas
+matplotlib
+seaborn
+power bi
+tableau
+excel
+statistics
+ai
+artificial intelligence
+
+# ---------------------- CLOUD / DEVOPS ----------------------
+aws
+microsoft azure
+google cloud
+gcp
+docker
+kubernetes
+jenkins
+ci cd
+linux
+bash
+shell scripting
+git
+github
+gitlab
+terraform
+
+# ---------------------- CYBERSECURITY ----------------------
+network security
+ethical hacking
+penetration testing
+firewall
+cryptography
+vulnerability assessment
+metasploit
+security auditing
+kali linux
+
+# ---------------------- SOFTWARE DEVELOPMENT ----------------------
+software testing
+sdlc
+agile
+scrum
+jira
+postman
+api testing
+unit testing
+integration testing
+debugging
+version control
+system design
+oop
+design patterns
+
+# ---------------------- MOBILE DEVELOPMENT ----------------------
+android
+android studio
+kotlin
+flutter
+react native
+ios
+swift
+
+# ---------------------- TOOLS / IDEs ----------------------
+vs code
+intellij idea
+pycharm
+eclipse
+jupyter notebook
+google colab
+visual studio
+postman
+slack
+notion
+
+# ---------------------- BUSINESS / ANALYTICS ----------------------
+power bi
+tableau
+excel
+ms excel
+data warehousing
+reporting
+kpi dashboards
+business analytics
+erp
+sap
+crm
+ms office
+
+# ---------------------- SOFT SKILLS ----------------------
+communication skills
+teamwork
+leadership
+problem solving
+analytical thinking
+creativity
+adaptability
+time management
+presentation skills
+documentation
+collaboration
+critical thinking
+
+# ---------------------- ADDITIONAL SKILLS ----------------------
+ui ux
+figma
+adobe xd
+photoshop
+illustrator
+video editing
+content writing
+digital marketing
+seo
+email marketing
+google ads
+social media marketing
+canva
+customer service
+project management
+business strategy
+financial analysis
+data entry
+ms word
+ms powerpoint
