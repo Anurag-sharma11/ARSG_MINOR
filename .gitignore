@@ -1,7 +1,19 @@
-venv/ 
-__pycache__/ 
-*.pdf 
-*.pkl 
-*.log 
-.env 
-*.pyc 
+# Virtual environment
+venv/
+__pycache__/
+
+# Python build / cache
+*.pyc
+*.pyo
+*.pyd
+
+# Project files not needed
+*.log
+*.pdf
+*.pkl
+.env
+
+# VSCode / OS files
+.vscode/
+.DS_Store
+Thumbs.db
