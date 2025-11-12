@@ -6,92 +6,116 @@ from pathlib import Path
 from backend.utils.text_preprocessing import apply_synonyms, clean_and_lemmatize
 
 # -------------------------------------------------------
-# ✅ AI Resume Ranker - Skill Extractor Module
-# Final Debugged Version (Full Integration)
+# 🚀 AI Resume Ranker - Universal Skill Extractor (Production-Ready)
 # -------------------------------------------------------
 
 # Path to the skills list file
 SKILLS_FILE = Path(__file__).parent / "skills_list.txt"
 
+# Toggle debug printing
+DEBUG_MODE = False
+
+
 def load_skills():
     """
     Load all skill keywords from skills_list.txt.
-    If the file is missing, load a fallback list of common skills.
+    If missing, use a robust fallback list.
     """
     if SKILLS_FILE.exists():
         skills = [s.strip().lower() for s in SKILLS_FILE.read_text().splitlines() if s.strip()]
     else:
-        # Fallback list
+        # Fallback default skill set
         skills = [
-            "python", "java", "c", "c++", "html", "css", "javascript",
-            "react", "node.js", "django", "flask", "sql", "mysql", "mongodb",
-            "power bi", "excel", "data analysis", "data visualization", "data cleaning",
-            "machine learning", "deep learning", "nlp", "git", "linux",
-            "communication skills", "teamwork", "problem solving",
-            "pandas", "numpy", "postman", "api", "rest api", "leadership"
+            "python", "java", "c", "c++", "html", "css", "javascript", "typescript",
+            "react", "node.js", "express.js", "django", "flask", "sql", "mysql",
+            "mongodb", "power bi", "excel", "data analysis", "data visualization",
+            "data cleaning", "machine learning", "deep learning", "nlp", "git",
+            "linux", "postman", "api", "rest api", "jwt", "jest", "supertest",
+            "axios", "tailwind", "redux", "vite", "fastapi", "docker", "lambda",
+            "sns", "sqs", "iam", "aws", "ci cd", "terraform", "jira"
         ]
     return skills
 
 
 def extract_skills_from_text(text):
     """
-    Extracts known skills from text:
-    - Applies advanced synonym normalization
-    - Cleans, lemmatizes, and regex-matches skills
-    - Handles variations like PowerBI, Data Handling, ReactJS, etc.
+    Extracts skills from text using:
+    - NLP cleaning
+    - Synonym normalization
+    - Acronym and tech keyword handling
+    - Regex and fallback scanning
     """
 
-    # Step 1️⃣: Clean and lemmatize first
-    text = clean_and_lemmatize(text)
+    # Step 1️⃣: Clean + normalize
+    cleaned_text = clean_and_lemmatize(text)
+    normalized_text = apply_synonyms(cleaned_text)
+    text_lower = normalized_text.lower()
 
-    # Step 2️⃣: Apply synonym normalization AFTER cleaning
-    text = apply_synonyms(text)
-
-    # Step 3️⃣: Fix potential glued phrases (powerbi → power bi, etc.)
-    for p in ["power bi", "machine learning", "data visualization", "sql", "data cleaning"]:
-        text = re.sub(rf"({p})(?=[a-z])", r"\1 ", text)
-
-
-    # Step 4️⃣: Load known skills
+    # Step 2️⃣: Load known skills
     skills = load_skills()
     found = set()
 
-    
-    # Step 5️⃣: Flexible pattern matching
-    print("\n--- DEBUG TEXT PREVIEW ---\n")
-    print(text[:800])  # 👈 optional: shows what text extractor sees, remove later if not needed
+    # Step 3️⃣: Pre-compile regex for speed
+    all_text_no_punct = re.sub(r'[^a-z0-9]', '', text_lower)
 
+    # Step 4️⃣: Smart acronym handling — merge IAM, CI/CD, JWT, REST, etc.
+    # Replace possible variants to match consistently
+    text_lower = re.sub(r"\bi am\b", "iam", text_lower)
+    text_lower = re.sub(r"ci[\s\-\/]?cd", "ci cd", text_lower)
+    text_lower = re.sub(r"aws[\s\-]*(sns|sqs|lambda)", r"aws \1", text_lower)
+    text_lower = re.sub(r"jwt[\s\-]*(auth|token)?", "jwt", text_lower)
+
+    # Optional debug print
+    if DEBUG_MODE:
+        print("\n--- DEBUG CLEANED TEXT PREVIEW ---\n", text_lower[:800])
+
+    # Step 5️⃣: Pattern matching
     for skill in skills:
-        # create flexible pattern: allows spaces, newlines, or hyphens between words
-        tokens = skill.strip().split()
+        skill = skill.strip().lower()
+        tokens = skill.split()
+
         if len(tokens) > 1:
-            # multi-word skill (like 'power bi', 'machine learning')
-            pattern = r"(?i)\b" + r"[\s\-]*".join(map(re.escape, tokens)) + r"s?\b"
+            # For multi-word skills like "machine learning", "power bi"
+            pattern = r"(?i)\b" + r"[\s\-/]*".join(map(re.escape, tokens)) + r"s?\b"
         else:
-            # single word skill
             pattern = r"(?i)\b" + re.escape(skill) + r"s?\b"
 
-        if re.search(pattern, text):
+        if re.search(pattern, text_lower):
             found.add(skill)
         else:
-            # Flexible matching for glued or punctuated variations
-            compact_skill = re.sub(r'[^a-z0-9]', '', skill.lower())
-            text_no_punct = re.sub(r'[^a-z0-9]', '', text.lower())
-            if compact_skill in text_no_punct:
+            # Compact version for things like 'restapi', 'cicd'
+            compact_skill = re.sub(r'[^a-z0-9]', '', skill)
+            if compact_skill in all_text_no_punct:
                 found.add(skill)
 
+    # Step 6️⃣: Fallback detection for modern tools missed by skills list
+    TECH_FALLBACK = [
+    "axios", "jest", "supertest", "vite", "tailwind", "redux",
+    "swagger", "fastapi", "postman", "iam", "sns", "sqs",
+    "jwt", "ci cd", "docker", "kubernetes", "terraform",
+    "joi", "joi validation"
+    ]
 
-    # Step 6️⃣: Return sorted unique skill list
-    return sorted(found)
+
+    for kw in TECH_FALLBACK:
+        if (kw in text_lower or kw.replace(" ", "") in all_text_no_punct):
+            found.add(kw)
+
+    # Step 7️⃣: Return sorted list
+    found_sorted = sorted(found)
+
+    if DEBUG_MODE:
+        print("\n[DEBUG] Extracted Skills:", found_sorted)
+
+    return found_sorted
 
 
 # ------------------- TEST SECTION -------------------
 if __name__ == "__main__":
     sample_text = """
-    Experienced in PowerBI dashboard creation, Data Cleaning & Data Handling.
-    Developed ReactJS app with NodeJS backend.
-    Strong background in Machine Learning, Data Visualization, and SQL database management.
-    Excellent teamwork, leadership, and communication.
+    Built secure APIs using JWT Auth, IAM (least privilege), and AWS Lambda with SNS/SQS.
+    Developed React.js app using Axios, Jest, and Supertest for backend validation.
+    Configured CI/CD pipelines using GitHub Actions and Docker containers.
     """
     print("\n--- Extracted Skills ---\n")
     print(extract_skills_from_text(sample_text))

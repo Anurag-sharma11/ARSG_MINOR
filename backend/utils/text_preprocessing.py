@@ -94,6 +94,18 @@ def clean_and_lemmatize(text):
 
     # 1️⃣ Normalize synonyms first
     text = apply_synonyms(text)
+    
+    # --- Protect important acronyms and tech tokens before spaCy modifies them ---
+    ACRONYMS = [
+        "AWS", "SNS", "SQS", "IAM", "CI", "CD", "API", "JWT",
+        "REST", "SQL", "HTML", "CSS", "HTTP", "TCP", "UDP"
+    ]
+
+    # Convert any of these acronyms into lowercase protected tokens
+    for acr in ACRONYMS:
+        pattern = r"\b" + acr + r"\b"
+        text = re.sub(pattern, acr.lower(), text, flags=re.IGNORECASE)
+
 
     # 2️⃣ Protect multi-word skill phrases
     key_phrases = [
@@ -117,14 +129,27 @@ def clean_and_lemmatize(text):
     text = re.sub(r"[^A-Za-z0-9_\s]", " ", text)
     text = re.sub(r"\s{2,}", " ", text).strip()
 
+    
     # 4️⃣ Lemmatize with spaCy (simple mode)
     doc = nlp(text)
     tokens = []
+
+    # 🧠 Always preserve tech-specific tokens before lemmatization
+    TECH_KEYWORDS = {
+        "jest", "supertest", "axios", "vite", "tailwind", "redux",
+        "swagger", "postman", "eslint", "mocha", "chai", "docker",
+        "lambda", "sns", "sqs", "iam", "joi"
+    }
+
     for token in doc:
-        if "_" in token.text:  # keep protected phrases
-            tokens.append(token.text)
-        elif token.text.lower() not in STOPWORDS and token.is_alpha:
+        tok = token.text.lower()
+        if "_" in tok:
+            tokens.append(tok)
+        elif tok in TECH_KEYWORDS:
+            tokens.append(tok)  # ✅ preserve as-is
+        elif tok not in STOPWORDS and token.is_alpha:
             tokens.append(token.lemma_.lower())
+
 
     # 5️⃣ Restore multi-word phrases
     clean_text = " ".join(tokens).replace("_", " ")
@@ -160,6 +185,10 @@ def clean_and_lemmatize(text):
         clean_text = re.sub(rf"({phrase})(?=[a-z])", r"\1 ", clean_text)
 
     clean_text = re.sub(r"\s{2,}", " ", clean_text).strip()
+    
+    # 🧠 DEBUG: Show the cleaned text preview before returning
+    print("\n[DEBUG] Final Cleaned Text Snippet:\n", clean_text[:500])
+    
     return clean_text
 
 

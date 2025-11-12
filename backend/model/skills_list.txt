@@ -11,6 +11,9 @@ typescript
 kotlin
 go
 ruby
+rust
+scala
+dart
 
 # ---------------------- WEB DEVELOPMENT ----------------------
 html
@@ -22,17 +25,83 @@ jquery
 react
 reactjs
 next.js
+redux
+axios
+vite
+tailwind
 node.js
 express.js
 flask
 django
+fastapi
 angular
 vue.js
+svelte
 wordpress
 php
 rest api
+restapi
 json
 ajax
+cors
+jwt
+jwt token
+oauth
+api integration
+web sockets
+websockets
+graphql
+swagger
+postman
+api testing
+eslint
+mocha
+chai
+jest
+supertest
+
+# ---------------------- BACKEND DEVELOPMENT ----------------------
+node.js
+express.js
+flask
+django
+fastapi
+rest api
+jwt
+oauth
+microservices
+api gateway
+redis
+celery
+message queue
+rabbitmq
+kafka
+docker
+nginx
+unit testing
+integration testing
+load balancing
+system design
+scalability
+session management
+authentication
+authorization
+web server
+lambda
+lambda functions
+async programming
+ci cd
+cicd
+ci
+cd
+github actions
+github-actions
+github actions ci
+joi
+joi validation
+input validation
+schema validation
+
 
 # ---------------------- DATABASE TECHNOLOGIES ----------------------
 sql
@@ -44,10 +113,17 @@ oracle
 sqlite
 nosql
 plsql
-database management
+mariadb
+dynamodb
+supabase
 data modeling
+database management
+indexing
+queries
+stored procedures
+schemas
 
-# ---------------------- DATA SCIENCE / ML / AI ----------------------
+# ---------------------- DATA SCIENCE / MACHINE LEARNING ----------------------
 machine learning
 deep learning
 nlp
@@ -74,15 +150,33 @@ excel
 statistics
 ai
 artificial intelligence
+eda
+big data
+data mining
+data wrangling
+streamlit
+plotly
+hugging face
+transformers
 
 # ---------------------- CLOUD / DEVOPS ----------------------
 aws
+amazon web services
+amazon-web-services
+aws sns
+aws sqs
+aws lambda
+sns
+sqs
+iam
+amazon iam
 microsoft azure
 google cloud
 gcp
 docker
 kubernetes
 jenkins
+github actions
 ci cd
 linux
 bash
@@ -91,6 +185,15 @@ git
 github
 gitlab
 terraform
+ansible
+nginx
+elastic beanstalk
+cloud functions
+heroku
+vercel
+render
+netlify
+deployment
 
 # ---------------------- CYBERSECURITY ----------------------
 network security
@@ -102,15 +205,18 @@ vulnerability assessment
 metasploit
 security auditing
 kali linux
+owasp
+malware analysis
+phishing prevention
+forensics
+security compliance
 
-# ---------------------- SOFTWARE DEVELOPMENT ----------------------
+# ---------------------- SOFTWARE ENGINEERING ----------------------
 software testing
 sdlc
 agile
 scrum
 jira
-postman
-api testing
 unit testing
 integration testing
 debugging
@@ -118,6 +224,12 @@ version control
 system design
 oop
 design patterns
+uml
+software architecture
+requirement analysis
+maintenance
+testing automation
+documentation
 
 # ---------------------- MOBILE DEVELOPMENT ----------------------
 android
@@ -127,6 +239,12 @@ flutter
 react native
 ios
 swift
+dart
+mobile ui
+firebase authentication
+push notifications
+apk
+gradle
 
 # ---------------------- TOOLS / IDEs ----------------------
 vs code
@@ -139,6 +257,13 @@ visual studio
 postman
 slack
 notion
+figma
+canva
+trello
+jira
+zoom
+microsoft teams
+github desktop
 
 # ---------------------- BUSINESS / ANALYTICS ----------------------
 power bi
@@ -153,6 +278,39 @@ erp
 sap
 crm
 ms office
+financial analysis
+sql reporting
+business strategy
+market research
+
+# ---------------------- DESIGN / UI UX ----------------------
+ui ux
+figma
+adobe xd
+photoshop
+illustrator
+coreldraw
+after effects
+canva
+wireframing
+prototyping
+user research
+visual design
+
+# ---------------------- DIGITAL MARKETING ----------------------
+digital marketing
+seo
+sem
+social media marketing
+content marketing
+email marketing
+google ads
+facebook ads
+campaign management
+influencer marketing
+affiliate marketing
+branding
+google analytics
 
 # ---------------------- SOFT SKILLS ----------------------
 communication skills
@@ -167,25 +325,21 @@ presentation skills
 documentation
 collaboration
 critical thinking
+attention to detail
+decision making
+self learning
 
 # ---------------------- ADDITIONAL SKILLS ----------------------
-ui ux
-figma
-adobe xd
-photoshop
-illustrator
-video editing
-content writing
-digital marketing
-seo
-email marketing
-google ads
-social media marketing
-canva
-customer service
 project management
-business strategy
-financial analysis
+customer service
 data entry
 ms word
 ms powerpoint
+ms access
+report generation
+documentation
+business communication
+public speaking
+team collaboration
+remote work
+english proficiency

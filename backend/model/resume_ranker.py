@@ -15,19 +15,6 @@ import numpy as np
 
 def rank_resumes_combined(required_skills, job_description, resume_folder,
                           skill_weight=0.6, ml_weight=0.4):
-    """
-    Rank resumes using a hybrid approach:
-      - Skill-based score: fraction of required skills found in resume
-      - TF-IDF cosine similarity: semantic similarity between job description and resume text
-    Final score = skill_weight * skill_score + ml_weight * tfidf_score
-    :param required_skills: list of required skill strings (e.g. ["python","sql"])
-    :param job_description: string describing job (used for TF-IDF)
-    :param resume_folder: path containing PDF resumes
-    :param skill_weight: float between 0 and 1
-    :param ml_weight: float between 0 and 1 (skill_weight + ml_weight should ideally = 1)
-    :return: list of dicts sorted by final_score descending
-    """
-
     # safety: ensure weights sum to 1
     total = skill_weight + ml_weight
     if total == 0:
@@ -42,24 +29,47 @@ def rank_resumes_combined(required_skills, job_description, resume_folder,
     if not resumes:
         return []
 
-    # ---------------- Skill-based processing ----------------
+    # Normalize required skills
     required_skills_norm = [s.strip().lower() for s in required_skills if s and s.strip()]
+
+    # Tech fallback keywords to auto-detect if extractor misses them
+    TECH_FALLBACK = {"jest", "supertest", "axios", "vite", "tailwind", "redux", "fastapi", "swagger", "postman"}
 
     for resume_file in resumes:
         resume_path = os.path.join(resume_folder, resume_file)
-        # Extract and preprocess resume text
-        raw_text = extract_text_from_pdf(resume_path)
-        resume_clean = clean_and_lemmatize(raw_text)
 
-        # Extract skills found in resume text
-        found_skills = extract_skills_from_text(resume_clean)
+        # 1) Extract raw text from PDF
+        raw_text = extract_text_from_pdf(resume_path) or ""
+        # debug raw
+        print("\n[DEBUG] RAW_TEXT preview (first 400 chars):\n", raw_text[:400])
 
-        # compute matched / missing lists
+        # 2) Clean and lemmatize
+        resume_clean = clean_and_lemmatize(raw_text) or ""
+        print("\n[DEBUG] CLEANED_TEXT preview (first 400 chars):\n", resume_clean[:400])
+
+        # 3) Extract skills found using your skill extractor
+        found_skills = extract_skills_from_text(resume_clean) or []
         found_lower = [s.lower() for s in found_skills]
+        print("\n[DEBUG] FOUND_SKILLS from extractor:", found_skills)
+
+        # 4) Fallback: auto-detect tech keywords directly from raw_text and cleaned text
+        #    (handles cases where skill list missing or preprocessing dropped tokens)
+        raw_lower = raw_text.lower()
+        clean_lower = resume_clean.lower()
+
+        fallback_added = []
+        for kw in TECH_FALLBACK:
+            if kw not in found_lower and (kw in raw_lower or kw in clean_lower):
+                found_lower.append(kw)
+                fallback_added.append(kw)
+
+        if fallback_added:
+            print("[DEBUG] Fallback auto-added keywords:", fallback_added)
+
+        # 5) Matched / missing against required list
         matched = [s for s in required_skills_norm if s in found_lower]
         missing = [s for s in required_skills_norm if s not in found_lower]
 
-        # skill score as percentage 0-100
         skill_score = round((len(matched) / len(required_skills_norm)) * 100, 2) if required_skills_norm else 0.0
 
         results.append({
@@ -71,39 +81,37 @@ def rank_resumes_combined(required_skills, job_description, resume_folder,
         })
 
     # ---------------- TF-IDF (semantic) processing ----------------
-    # If job_description is empty, use required_skills joined as the job text
     job_text = job_description.strip() if (job_description and job_description.strip()) else " ".join(required_skills_norm)
     job_clean = clean_and_lemmatize(job_text)
 
     docs = [job_clean] + [r["resume_text"] for r in results]
 
-    # Vectorize (lightweight)
     try:
         vectorizer = TfidfVectorizer(stop_words="english", max_features=5000)
         tfidf_matrix = vectorizer.fit_transform(docs)
         job_vec = tfidf_matrix[0]
         resume_vecs = tfidf_matrix[1:]
-        tfidf_scores = cosine_similarity(job_vec, resume_vecs).flatten() * 100  # scale 0-100
-    except Exception:
-        # if TF-IDF fails for any reason, give zero ML contribution
+        tfidf_scores = cosine_similarity(job_vec, resume_vecs).flatten() * 100
+    except Exception as e:
+        print("[DEBUG] TF-IDF error:", e)
         tfidf_scores = np.zeros(len(results))
 
-    # ---------------- Combine into final score ----------------
+    # Combine
     for idx, r in enumerate(results):
         ml_score = round(float(tfidf_scores[idx]), 2) if len(tfidf_scores) > idx else 0.0
         final_score = round((skill_weight * r["skill_score"] + ml_weight * ml_score), 2)
         r["tfidf_score"] = ml_score
         r["final_score"] = final_score
 
-    # Sort by final_score descending
     results.sort(key=lambda x: x["final_score"], reverse=True)
 
-    # Cleanup: remove resume_text to avoid large payloads
+    # Cleanup
     for r in results:
         if "resume_text" in r:
             del r["resume_text"]
 
     return results
+
 
 
 # ---------------- TEST / DEMO ----------------
