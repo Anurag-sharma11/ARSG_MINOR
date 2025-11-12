@@ -1,4 +1,5 @@
 import streamlit as st
+import json
 import os
 import shutil
 import pandas as pd
@@ -100,23 +101,42 @@ with tab2:
     st.subheader("📊 AI Resume Ranker with Skill Gap Analysis")
     st.write("Rank candidates using **Skill Matching + TF-IDF Similarity** for accurate results.")
 
+    # ---------- JOB PROFILE SELECTION ----------
+    job_profile_path = os.path.join("backend", "model", "job_profiles.json")
+    if os.path.exists(job_profile_path):
+        with open(job_profile_path) as f:
+            job_profiles = json.load(f)
+    else:
+        job_profiles = {}
+
+    job_options = list(job_profiles.keys())
+    selected_job = st.selectbox("🧩 Select Job Profile", job_options, index=None, placeholder="Choose a job profile...")
+
+    # Auto-fill both skills and job description when a profile is selected
+    prefilled_skills_text = ""
+    prefilled_description = ""
+
+    if selected_job:
+        prefilled_skills_text = ", ".join(job_profiles[selected_job]["skills"])
+        prefilled_description = job_profiles[selected_job]["job_description"]
+
+
     # ---------- INPUTS ----------
     with st.expander("🎯 Enter Job Requirements", expanded=True):
         col1, col2 = st.columns(2)
         with col1:
             required_skills_input = st.text_area(
                 "Enter Required Skills (comma-separated):",
-                "Python, SQL, Power BI, Excel, Data Cleaning, Data Visualization, Machine Learning, Communication Skills, Teamwork, React, Node.js",
+                prefilled_skills_text or "Python, SQL, Excel, Data Visualization, Machine Learning",
                 height=100
             )
         with col2:
             job_description_input = st.text_area(
                 "Paste Job Description (optional):",
-                "We are looking for a Data Analyst proficient in Python, SQL, Power BI, and Excel. "
-                "Should understand data cleaning, data visualization, and machine learning. "
-                "Good communication and teamwork skills are preferred.",
+                prefilled_description or "We are looking for candidates with strong technical and analytical skills.",
                 height=100
             )
+
 
     uploaded_files_rank = st.file_uploader(
         "Upload Resume PDFs for Ranking",

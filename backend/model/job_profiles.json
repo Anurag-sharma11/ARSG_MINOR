@@ -1,0 +1,181 @@
+{
+  "System Associate": {
+    "skills": [
+      "Python",
+      "SQL",
+      "Networking",
+      "Windows Server",
+      "Troubleshooting",
+      "Customer Support",
+      "IT Operations",
+      "MS Office",
+      "Technical Documentation",
+      "Hardware Setup"
+    ],
+    "job_description": "Provide system and network support for internal teams. Responsible for maintaining servers, troubleshooting hardware/software issues, and ensuring IT operations run smoothly."
+  },
+  "Software Developer": {
+    "skills": [
+      "Java",
+      "Python",
+      "C++",
+      "Data Structures",
+      "OOPs Concepts",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Problem Solving"
+    ],
+    "job_description": "Design, develop, and maintain software applications using Java or Python. Collaborate with cross-functional teams to deliver efficient, clean, and scalable code."
+  },
+  "Web Developer": {
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "Express.js",
+      "Responsive Design",
+      "Bootstrap",
+      "Version Control (Git)"
+    ],
+    "job_description": "Develop responsive web pages and dynamic websites using front-end and back-end technologies like React and Node.js. Ensure website performance and cross-browser compatibility."
+  },
+  "Frontend Developer": {
+    "skills": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React",
+      "Tailwind CSS",
+      "UI/UX Basics",
+      "REST APIs",
+      "Cross-Browser Compatibility",
+      "Version Control (Git)"
+    ],
+    "job_description": "Create engaging, responsive user interfaces using React and modern UI frameworks. Work closely with designers to enhance user experience and application performance."
+  },
+  "Backend Developer": {
+    "skills": [
+      "Python",
+      "Flask",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "SQL",
+      "API Development",
+      "Authentication",
+      "Data Modeling",
+      "REST APIs"
+    ],
+    "job_description": "Build and maintain server-side logic, APIs, and database systems. Collaborate with frontend teams to integrate APIs and optimize performance."
+  },
+  "Full Stack Developer": {
+    "skills": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "SQL",
+      "REST APIs",
+      "Deployment (Render/Vercel)"
+    ],
+    "job_description": "Develop both client and server sides of web applications. Manage frontend design, backend logic, and deployment on free hosting platforms."
+  },
+  "Data Analyst": {
+    "skills": [
+      "Python",
+      "Pandas",
+      "NumPy",
+      "Excel",
+      "SQL",
+      "Tableau",
+      "Power BI",
+      "Data Cleaning",
+      "Data Visualization",
+      "Statistical Analysis"
+    ],
+    "job_description": "Analyze and interpret complex data sets using Python, SQL, and BI tools. Build dashboards, visualize data, and provide actionable insights to stakeholders."
+  },
+  "Machine Learning Intern": {
+    "skills": [
+      "Python",
+      "scikit-learn",
+      "Pandas",
+      "NumPy",
+      "Matplotlib",
+      "NLP",
+      "Data Preprocessing",
+      "Model Evaluation",
+      "Regression",
+      "Classification"
+    ],
+    "job_description": "Assist in developing and testing machine learning models. Work on preprocessing, feature engineering, and evaluating algorithms using Python."
+  },
+  "IT Support Engineer": {
+    "skills": [
+      "Networking",
+      "Hardware Troubleshooting",
+      "Operating Systems",
+      "Customer Support",
+      "Windows Server",
+      "Active Directory",
+      "Ticket Management",
+      "System Monitoring",
+      "MS Office",
+      "Remote Assistance"
+    ],
+    "job_description": "Provide technical support, resolve IT-related issues, and maintain network systems. Ensure smooth operation of hardware, software, and server components."
+  },
+  "Digital Marketing Executive": {
+    "skills": [
+      "SEO",
+      "Google Ads",
+      "Facebook Ads",
+      "Content Writing",
+      "Social Media Management",
+      "Analytics Tools",
+      "Email Marketing",
+      "Canva",
+      "Keyword Research",
+      "Campaign Analysis"
+    ],
+    "job_description": "Plan and execute online marketing campaigns. Use SEO and paid advertising to drive website traffic and improve conversion rates."
+  },
+  "UI/UX Designer": {
+    "skills": [
+      "Figma",
+      "Adobe XD",
+      "Canva",
+      "User Research",
+      "Wireframing",
+      "Prototyping",
+      "Visual Design",
+      "Color Theory",
+      "Typography",
+      "User Testing"
+    ],
+    "job_description": "Design user-friendly interfaces and wireframes for applications. Conduct user research, create prototypes, and collaborate with developers for implementation."
+  },
+  "Cloud Support Associate": {
+    "skills": [
+      "AWS Basics",
+      "Azure",
+      "Linux",
+      "Networking",
+      "Python",
+      "Cloud Monitoring",
+      "Automation Scripts",
+      "Virtual Machines",
+      "Security Groups",
+      "Technical Troubleshooting"
+    ],
+    "job_description": "Support and monitor cloud-based infrastructure. Assist in deployments, troubleshoot virtual environments, and ensure uptime and security of cloud services."
+  }
+}
