@@ -292,16 +292,93 @@ Special thanks to everyone who supported this project.
 `NLP`, `TF-IDF`, `Resume Screening`, `Streamlit`, `Machine Learning`,
 `Power BI`, `Data Cleaning`, `Python`, `Data Analyst`, `Skill Gap Analysis`
 
-```
+---
+
+## 🗓️ **Project Updates / Changelog**
+
+### 🧠 *AI Resume Ranker with Skill Gap Analysis (Minor Project)*
 
 ---
 
-## ✅ Bonus: Viva-Ready Summary (Use These Lines)
-> “Our project uses Natural Language Processing to extract both technical and soft skills from resumes.  
-> Then, using a hybrid ranking model combining Skill Match and TF-IDF similarity, it ranks candidates and performs skill gap analysis.  
-> It saves recruiter time, provides explainable results, and helps identify missing skills for candidates.”
+### 🗓️ **12 November 2025 — Major Update**
+
+#### 🔹 *Feature Added: Job Profile-Based Auto Skill & Description Fill*
+
+**Description:**
+
+* Added a **Job Profile dropdown** for recruiters in the Streamlit UI.
+* When a recruiter selects a profile (e.g., *Data Analyst*, *Web Developer*, *System Associate*),
+  → the **Required Skills** and **Job Description** fields automatically update.
+* Recruiter can still **edit both fields manually** before running the analysis.
+* This feature improves usability and helps recruiters quickly analyze resumes for different roles.
+
+**Files Updated:**
+
+* `backend/app.py` → added logic for auto-skill and description population.
+* `backend/model/job_profiles.json` → restructured to store both `skills` and `job_description` for each profile.
+
+**Example Profiles:**
+
+* Data Analyst → Python, Excel, SQL, Power BI
+* Backend Developer → Flask, Node.js, MongoDB
+* UI/UX Designer → Figma, Wireframing, Prototyping
 
 ---
 
-Would you like me to also create a **`requirements.txt`** (with exact dependencies) and a **project folder tree** section for your README so you can submit everything as a professional GitHub repo or college zip?
-```
+### 🗓️ **08 November 2025 — Functional Integration**
+
+#### 🔹 *Hybrid Resume Ranker Model*
+
+* Integrated combined **TF-IDF similarity + Skill Matching** algorithm for better accuracy.
+* Added visualization with **Plotly Bar Chart** showing resume match percentage.
+* Implemented CSV export option for ranked results.
+
+**Files Updated:**
+
+* `backend/model/resume_ranker.py`
+* `backend/app.py`
+* Added bar chart visualization + CSV download in Streamlit UI.
+
+---
+
+### 🗓️ **05 November 2025 — Core Feature Implementation**
+
+#### 🔹 *Initial Functional Prototype*
+
+* Built working version of **Resume Upload & Skill Extraction** pipeline.
+* Used `pdfplumber` for PDF parsing and `nltk` + regex for text cleaning.
+* Implemented **Skill Preview Tab** for recruiters to test extraction accuracy.
+
+**Files Created:**
+
+* `backend/utils/pdf_parser.py`
+* `backend/model/skill_extractor.py`
+* `backend/app.py` (initial Streamlit interface)
+
+---
+
+### 🗓️ **02 November 2025 — Project Setup**
+
+#### 🔹 *Initial Setup & Environment Configuration*
+
+* Created base folder structure for ML + Streamlit integration.
+* Added dependencies in `requirements.txt`.
+* Verified basic PDF reading and text preprocessing flow.
+
+---
+
+## 🧩 **Next Planned Features**
+
+* 🔹 Recruiter-side option to **add custom job profiles** directly via UI (auto-save to JSON).
+* 🔹 Candidate-side feature for **resume feedback generation** (Phase 2 - Major Project).
+* 🔹 Advanced **semantic matching model (BERT)** upgrade for contextual similarity.
+
+---
+
+## 💡 **Version Info**
+
+**Current Version:** `v1.2.0`
+**Last Updated:** *12 November 2025*
+**Developed By:** Anurag Sharma (BCA Minor Project)
+
+
