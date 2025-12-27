@@ -1,9 +1,3 @@
-professional — no “bro” tone, no hype lines, no ChatGPT-style phrases.
-Content, structure, and depth will remain perfect for BCA minor project, viva, and GitHub.
-
-Below is the final refined README.md ⬇️
-You can directly copy–paste it.
-
 🧠 AI Resume Ranker with Skill Gap Analysis
 🎓 Minor Project – BCA (Data Science / Computer Applications)
 📘 Project Overview
@@ -12,6 +6,7 @@ The AI Resume Ranker with Skill Gap Analysis is a web-based intelligent system d
 The project uses Natural Language Processing (NLP) and Machine Learning techniques to analyze resumes, rank candidates based on job requirements, and identify missing skills.
 
 The system assists recruiters in shortlisting candidates efficiently and helps students understand skill gaps for specific job roles.
+
 
 🎯 Objectives
 
@@ -24,6 +19,7 @@ Apply NLP-based semantic similarity analysis.
 Identify missing skills compared to job requirements.
 
 Provide an interactive and user-friendly dashboard.
+
 
 🚀 Key Features
 1️⃣ Skill Extraction using NLP
@@ -39,6 +35,7 @@ PowerBI, Power-BI → Power BI
 MachineLearning → Machine Learning
 
 Team Collaboration → Teamwork
+
 
 2️⃣ Resume Ranking using Hybrid Model
 
@@ -65,6 +62,8 @@ Matched Skills
 
 Missing Skills
 
+
+
 3️⃣ Skill Gap Analysis
 
 Compares extracted resume skills with required job skills.
@@ -72,6 +71,8 @@ Compares extracted resume skills with required job skills.
 Identifies missing skills for each candidate.
 
 Helps recruiters and candidates understand improvement areas.
+
+
 
 4️⃣ Streamlit Web Interface
 
@@ -94,6 +95,7 @@ Upload resumes for ranking.
 Displays results using progress bars and bar charts.
 
 Allows CSV export of ranking results.
+
 
 5️⃣ Backend Modules
 File	Description
@@ -118,6 +120,7 @@ Skill Gap Identification
 Hybrid Resume Ranking (Skill Match + TF-IDF)
             ↓
 Streamlit Dashboard & Visualization
+
 
 🧠 Technology Stack
 Category	Tools
@@ -170,6 +173,8 @@ Experience-based weighting.
 
 Recruiter login and history tracking.
 
+
+
 🧑‍💼 Author
 
 Anurag Sharma
@@ -177,6 +182,8 @@ BCA (Data Science) – GGSIPU
 Email: astasamp798@gmail.com
 
 GitHub: Anurag-sharma11
+
+
 
 📌 How to Run the Project
 Step 1: Install Dependencies
@@ -188,28 +195,27 @@ streamlit run backend/app.py
 Step 3: Test Skill Extraction
 python backend/test_resume_skills.py "resume.pdf"
 
+
+
 📚 Key Learnings
 
 Practical application of NLP for text analysis.
-
 Use of TF-IDF for semantic similarity.
-
 Integration of machine learning logic with web interfaces.
-
 End-to-end system design for real-world applications.
 
-📖 Acknowledgment
 
+
+📖 Acknowledgment
 This project was developed as part of the Minor Project requirement for BCA (Semester V) under the guidance of faculty members at GGSIPU.
+
 
 🔑 Keywords
 
 NLP, Resume Screening, TF-IDF, Streamlit, Machine Learning, Skill Gap Analysis, Data Science
 
+
 📌 Version Information
-
 Version: v1.2.0
-
 Last Updated: November 2025
-
 Project Type: BCA Minor Project
